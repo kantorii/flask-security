@@ -259,10 +259,11 @@ def forgot_password():
         form = form_class()
 
     if form.validate_on_submit():
-        send_reset_password_instructions(form.user)
+        if form.user is not None:
+            send_reset_password_instructions(form.user)
         if not request.is_json:
             do_flash(*get_message('PASSWORD_RESET_REQUEST',
-                     email=form.user.email))
+                                  email=form.email.data))
 
             if _security.post_forgot_view:
                 return redirect(get_url(_security.post_forgot_view))
