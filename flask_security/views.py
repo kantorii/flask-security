@@ -195,7 +195,8 @@ def send_confirmation():
         form = form_class()
 
     if form.validate_on_submit():
-        send_confirmation_instructions(form.user)
+        if form.user is not None:
+            send_confirmation_instructions(form.user)
         if not request.is_json:
             do_flash(*get_message('CONFIRMATION_REQUEST',
                      email=form.user.email))
