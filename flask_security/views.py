@@ -199,7 +199,7 @@ def send_confirmation():
             send_confirmation_instructions(form.user)
         if not request.is_json:
             do_flash(*get_message('CONFIRMATION_REQUEST',
-                     email=form.user.email))
+                                  email=form.email.data))
 
             if _security.post_send_confirmation_view:
                 return redirect(get_url(_security.post_send_confirmation_view))
