@@ -303,6 +303,6 @@ class ChangePasswordForm(Form, PasswordFormMixin):
             self.password.errors.append(get_message('INVALID_PASSWORD')[0])
             return False
         if self.password.data == self.new_password.data:
-            self.password.errors.append(get_message('PASSWORD_IS_THE_SAME')[0])
+            self.new_password.errors.append(get_message('PASSWORD_IS_THE_SAME')[0])
             return False
         return True
