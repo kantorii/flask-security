@@ -277,8 +277,7 @@ def forgot_password():
                                      **_ctx('forgot_password'))
 
 
-@anonymous_user_required
-def reset_password(token):
+def reset_password_function(token):
     """View function that handles a reset password request."""
 
     expired, invalid, user = reset_password_token_status(token)
@@ -309,6 +308,12 @@ def reset_password(token):
         reset_password_token=token,
         **_ctx('reset_password')
     )
+
+
+@anonymous_user_required
+def reset_password(token):
+    """View function that handles a reset password request."""
+    return reset_password_function(token)
 
 
 @login_required
