@@ -291,7 +291,7 @@ def reset_password_function(token):
         do_flash(*get_message('PASSWORD_RESET_EXPIRED', email=user.email,
                               within=_security.reset_password_within))
     if invalid or expired:
-        return redirect(url_for('forgot_password'))
+        return redirect(_security.reset_url)  #TODO: Shouldn't config value be used everywhere instead of url_for()?
 
     form = _security.reset_password_form()
 
